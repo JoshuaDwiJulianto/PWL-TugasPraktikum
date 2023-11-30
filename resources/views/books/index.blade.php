@@ -27,7 +27,7 @@
                             </tr>
                         </x-slot>
                         @php $num=1; @endphp
-                        @foreach($bookshelfs as $book)
+                        @foreach($books as $book)
                         <tr>
                             <td>{{ $num++ }} </td>
                             <td>{{ $book->title }}</td>
@@ -42,14 +42,12 @@
                             <td>{{ $book->bookshelf->code }}-{{ $book->bookshelf->name }}</td>
                             <td>
                                 <x-primary-button tag="a" href="{{route('book.edit', $book->id)}}">Edit</x-primary-button>
-                            
+
                                 <x-danger-button x-data=""
-                                    x-on:click.prevent="$dispatch('open-modal', 'confirm-book-deletion')"
-                                    x-on:click="$dispatch('set-action', '{{route('book.destroy', $book->id) }}')">
-                                    {{__('Delete') }}
-                                </x-danger-button>
-                            </td>
-                           
+                                x-on:click.prevent="$dispatch('open-modal', 'confirm-book-deletion')"
+                                x-on:click="$dispatch('set-action', '{{route('book.destroy', $book->id) }}')">
+                                {{__('Delete') }}
+                            </x-danger-button>
                         </tr>
                         @endforeach
                     </x-table>
